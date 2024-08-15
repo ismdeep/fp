@@ -31,3 +31,12 @@ func (s Slice[T]) Reduce(accumulator func(T, T) T, initial T) T {
 	}
 	return result
 }
+
+// Transform 函数将切片中的每一个值转成新类型
+func Transform[T any, B any](s Slice[T], transform func(T) B) Slice[B] {
+	var result Slice[B]
+	for _, v := range s {
+		result = append(result, transform(v))
+	}
+	return result
+}
